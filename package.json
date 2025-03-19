@@ -9,6 +9,8 @@
     "superagent": "^9.0.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "17",
+    "@commitlint/config-conventional": "17",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "eslint": "^8.32.0",
