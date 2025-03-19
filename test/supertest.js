@@ -79,6 +79,23 @@ describe('request(app)', function () {
       });
   });
 
+  it('should not ECONNRESET on multiple simultaneous tests', function (done) {
+    const app = express();
+
+    app.get('/', function (req, res) {
+      res.send('hey');
+    });
+
+    const test = request(app);
+
+    const requestCount = 10;
+
+    const requests = [];
+    for (let i = 0; i < requestCount; i += 1) requests.push(test.get('/'));
+
+    global.Promise.all(requests).then(() => done(), done);
+  });
+
   it('should work with an active server', function (done) {
     const app = express();
     let server;
